@@ -1,25 +1,27 @@
-def merge_sort(unsorted)
+def merge_sort(unsorted, a =[], b = [])
   if(unsorted.size() > 1)
-    sorter1 = []
-    sorter2 = []
+    sorted_list = []
     unsorted.each_with_index do |el, ind|
       if(ind % 2 == 0)
-        sorter2 << el
+        b << el
       else
-        sorter1 << el
+        a << el
       end
     end
-    sorted_sorters = []
-    while((sorter1 < sorter1.size()) && (sorter2 < sorter2.size()))
-      if(sorter1[1] < sorter2[1])
-        sorted_sorters << sorter1[1]
-      else
-        sorted_sorters << sorter2[1]
-      end
+    puts "b"
+    puts b
+    puts "a"
+    puts a
+    if(a.first() > b.first())
+      sorted_list << b.first()
+    else
+      sorted_list << a.first()
     end
+    
+    puts sorted_list
   else
     return unsorted
   end
 end
 
-puts merge_sort([8, 7, 5, 4, 6, 12])
+puts merge_sort([8, 7, 10])
