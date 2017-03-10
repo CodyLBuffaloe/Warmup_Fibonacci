@@ -1,10 +1,53 @@
-def merge_sort(unsorted, a =[], b = [])
-  if(unsorted.size() == 1)
-    return unsorted
+def full_array_program (arr, a = [])
+  i = 0
+  arr.each do |el|
+    a[i] = arr[i]
+    i += 1
+  end
+  merge_sort(a,0, a.length, arr)
+end
+
+def merge_sort(unsorted, iBegin, iEnd, a)
+  if((iEnd - iBegin) < 2)
+    return
   else
-
-
+    middie = ((iBegin + iEnd) / 2)
+    merge_sort(unsorted, iBegin, middie, a)
+    merge_sort(unsorted, middie, iEnd, a)
+    actual_merge(a, iBegin, middie, iEnd, unsorted)
   end
 end
 
-puts merge_sort([8, 12])
+def actual_merge(unsorted, iBegin, middie, iEnd, a)
+  i = iBegin
+  j = middie
+  k = iBegin
+  puts "Begin"
+  puts i
+  puts "Middle"
+  puts j
+  puts "Incrementer"
+  puts k
+  puts "Unsorted"
+  puts unsorted
+  puts "A"
+  puts a
+  while(k < iEnd)
+    if(i < j && (j >= iEnd || unsorted[i] <= unsorted[j]))
+      a[k] = unsorted[i]
+      i += 1
+      puts "Incrementor less than"
+      puts k
+    else
+      a[k] = unsorted[j]
+      j += 1
+      puts "Incrementor greater than"
+      puts k
+    end
+    k += 1
+  end
+end
+
+unsorted = [8, 13, 12, 11]
+puts full_array_program(unsorted)
+puts unsorted
