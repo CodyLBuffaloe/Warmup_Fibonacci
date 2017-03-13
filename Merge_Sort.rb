@@ -22,32 +22,25 @@ def actual_merge(unsorted, iBegin, middie, iEnd, a)
   i = iBegin
   j = middie
   k = iBegin
-  puts "Begin"
-  puts i
-  puts "Middle"
-  puts j
-  puts "Incrementer"
-  puts k
-  puts "Unsorted"
-  puts unsorted
-  puts "A"
-  puts a
   while(k < iEnd)
-    if(i < j && (j >= iEnd || unsorted[i] <= unsorted[j]))
-      a[k] = unsorted[i]
-      i += 1
-      puts "Incrementor less than"
-      puts k
-    else
-      a[k] = unsorted[j]
-      j += 1
-      puts "Incrementor greater than"
-      puts k
-    end
-    k += 1
+      if(i < middie && ((j >= iEnd) || (unsorted[i] <= unsorted[j])))
+        a[k] = unsorted[i]
+        i += 1
+        puts "Incrementor less than"
+        puts k
+      else
+        a[k] = unsorted[j]
+        j += 1
+        puts "Incrementor greater than"
+        puts k
+      end
+    k +=1
   end
+   puts "Unsorted"
+    puts unsorted
+    puts "A"
+    puts a
 end
 
-unsorted = [8, 13, 12, 11]
+unsorted = [13, 8, 7, 10]
 puts full_array_program(unsorted)
-puts unsorted
