@@ -1,46 +1,21 @@
-def full_array_program (arr, a = [])
-  i = 0
-  arr.each do |el|
-    a[i] = arr[i]
-    i += 1
+def mergesort(unsorted)
+  if(unsorted.length == 1)
+    return unsorted
   end
-  merge_sort(a,0, a.length, arr)
+  midpoint = (unsorted.length) / 2
+  actual_merge(mergesort(unsorted[0...midpoint]), mergesort(unsorted[midpoint..-1]))
 end
 
-def merge_sort(unsorted, iBegin, iEnd, a)
-  if((iEnd - iBegin) < 2)
-    return
-  else
-    middie = ((iBegin + iEnd) / 2)
-    merge_sort(unsorted, iBegin, middie, a)
-    merge_sort(unsorted, middie, iEnd, a)
-    actual_merge(a, iBegin, middie, iEnd, unsorted)
+def actual_merge(left_unsorted, right_unsorted)
+  sorted = []
+  puts "Left"
+  puts left_unsorted
+  puts "Right"
+  puts right_unsorted
+  until( (left_unsorted.length == 0) || (right_unsorted.length == 0) ) do
+    sorted << (left_unsorted.first <= right_unsorted.first ? left_unsorted.shift : right_unsorted.shift)
   end
+  sorted + left_unsorted + right_unsorted
 end
 
-def actual_merge(unsorted, iBegin, middie, iEnd, a)
-  i = iBegin
-  j = middie
-  k = iBegin
-  while(k < iEnd)
-      if(i < middie && ((j >= iEnd) || (unsorted[i] <= unsorted[j])))
-        a[k] = unsorted[i]
-        i += 1
-        puts "Incrementor less than"
-        puts k
-      else
-        a[k] = unsorted[j]
-        j += 1
-        puts "Incrementor greater than"
-        puts k
-      end
-    k +=1
-  end
-   puts "Unsorted"
-    puts unsorted
-    puts "A"
-    puts a
-end
-
-unsorted = [13, 8, 7, 10]
-puts full_array_program(unsorted)
+puts mergesort([8, 12, 3, 4, 56, 78, 9, 12, 13, 45, 6, 76])
